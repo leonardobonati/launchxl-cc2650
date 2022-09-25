@@ -85,14 +85,13 @@ PIN_Config buttonPinTable[] = {
  *  If Board_LED3 and Board_LED4 are defined, then we'll add them to the PIN
  *  callback function.
  */
-
 void buttonCallbackFxn(PIN_Handle handle, PIN_Id pinId) {
     uint32_t currVal = 0;
 
-    // Debounce logic, only toggle if the button is still pushed (low)
+    /* Debounce logic, only toggle if the button is still pushed (low) */
     CPUdelay(8000*50);
     if (!PIN_getInputValue(pinId)) {
-        // Toggle LED based on the button pressed
+        /* Toggle LED based on the button pressed */
         switch (pinId) {
             case Board_BUTTON0:
                 currVal =  PIN_getOutputValue(Board_LED0);
@@ -105,7 +104,7 @@ void buttonCallbackFxn(PIN_Handle handle, PIN_Id pinId) {
                 break;
 
             default:
-                // Do nothing
+                /* Do nothing */
                 break;
         }
     }
